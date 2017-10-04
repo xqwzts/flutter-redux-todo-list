@@ -13,6 +13,16 @@ class _ViewModel {
     @required this.active,
     @required this.onPressed,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is _ViewModel &&
+          runtimeType == other.runtimeType &&
+          active == other.active;
+
+  @override
+  int get hashCode => active.hashCode;
 }
 
 class FilterLink extends StatelessWidget {
@@ -27,6 +37,7 @@ class FilterLink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new StoreConnector<TodoState, _ViewModel>(
+      distinct: true,
       converter: (store) => new _ViewModel(
             active: filter == store.state.visibilityFilter,
             onPressed: () => store.dispatch(
