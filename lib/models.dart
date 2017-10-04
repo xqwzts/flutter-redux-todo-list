@@ -20,6 +20,18 @@ class Todo {
       completed: completed ?? this.completed,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Todo &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          text == other.text &&
+          completed == other.completed;
+
+  @override
+  int get hashCode => id.hashCode ^ text.hashCode ^ completed.hashCode;
 }
 
 class TodoState {

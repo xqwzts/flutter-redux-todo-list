@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:todo/components/todo_list.dart';
@@ -12,6 +13,16 @@ class _ViewModel {
     this.todos,
     this.onTodoTap,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is _ViewModel &&
+              runtimeType == other.runtimeType &&
+              new ListEquality<Todo>().equals(todos, other.todos);
+
+  @override
+  int get hashCode => todos.hashCode;
 }
 
 class VisibleTodoList extends StatelessWidget {
@@ -31,6 +42,7 @@ class VisibleTodoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new StoreConnector<TodoState, _ViewModel>(
+      distinct: true,
       converter: (store) => new _ViewModel(
             todos: _getVisibleTodos(
                 store.state.todos, store.state.visibilityFilter),
