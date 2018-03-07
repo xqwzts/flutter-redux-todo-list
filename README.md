@@ -1,7 +1,7 @@
 # todo
 
 A basic flutter_redux todo application.
-Based on [the basic todo list redux example](http://redux.js.org/docs/basics/ExampleTodoList.html).
+Based on [the basic todo list redux example](https://redux.js.org/basics/example-todo-list).
 
 ## Getting Started
 
