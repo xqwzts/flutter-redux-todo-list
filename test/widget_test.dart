@@ -14,16 +14,16 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(new TodoApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Expect no Todo list items  
+    expect(find.byType(ListTile), findsNothing);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // Enter a Todo 
+    expect(find.byType(TextField), findsOneWidget);
+    await tester.enterText(find.byType(TextField), 'Todo item #1');
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+    await tester.pumpAndSettle();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // And now we should have one Todo list item
+    expect(find.byType(ListTile), findsOneWidget);
   });
 }

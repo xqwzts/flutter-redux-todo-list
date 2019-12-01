@@ -27,7 +27,7 @@ VisibilityFilter visibilityFilterReducer(VisibilityFilter state, action) {
   return state;
 }
 
-TodoState todoAppReducer(TodoState state, TodoAction action) {
+TodoState todoAppReducer(TodoState state, dynamic action) {
   return new TodoState(
     todos: todosReducer(state.todos, action),
     visibilityFilter: visibilityFilterReducer(state.visibilityFilter, action),
