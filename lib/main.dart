@@ -10,12 +10,12 @@ void main() {
 }
 
 class TodoApp extends StatelessWidget {
-  final Store store =
+  final Store<TodoState> store =
       new Store(todoAppReducer, initialState: new TodoState.initialState());
 
   @override
   Widget build(BuildContext context) {
-    return new StoreProvider(
+    return new StoreProvider<TodoState>(
       store: store,
       child: new MaterialApp(
         title: 'todo',
